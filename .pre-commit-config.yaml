@@ -55,7 +55,7 @@ repos:
       - id: cargo-test
         name: cargo test
         description: unit test for the project
-        entry: bash -c 'cargo nextest run --all-features'
+        entry: bash -c 'cargo nextest run --all-features || (exit_code=$?; [[ $exit_code -eq 4 ]] && exit 0 || exit $exit_code)'
         language: rust
         files: \.rs$
         pass_filenames: false
